@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +32,24 @@ use Illuminate\Support\Facades\Route;
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
- });
+
+    // Post
+
+    Route::get('/posts', [PostController::class, 'index']);
+    Route::post('/post', [PostController::class, 'store']);
+    Route::get('/post/{id}', [PostController::class, 'show']);
+    Route::put('/post/{id}', [PostController::class, 'update']);
+    Route::delete('/post/{id}', [PostController::class, 'destroy']);
+
+    // Comment
+
+    Route::get('/post/{id}/comments', [CommentController::class, 'index']);
+    Route::post('/post/{id}/comments', [CommentController::class, 'store']);
+    Route::put('/comment/{id}', [CommentController::class, 'update']);
+    Route::delete('/comment/{id}', [CommentController::class, 'destroy']);
+
+    // Like
+
+    Route::post('/post/{id}/likes', [LikeController::class, 'likeOrUnlike']);
+
+});

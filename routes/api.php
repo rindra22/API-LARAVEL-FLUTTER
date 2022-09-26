@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
     // User
     Route::get('/user', [AuthController::class, 'user']);
+    Route::put('/user', [AuthController::class, 'update']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
 

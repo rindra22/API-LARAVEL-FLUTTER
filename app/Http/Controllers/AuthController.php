@@ -14,7 +14,7 @@ class AuthController extends Controller
         $validated = request()->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6',
         ]);
 
         // create user
@@ -31,7 +31,7 @@ class AuthController extends Controller
         return response()->json([
             'user' => $user,
             'token' => $token
-        ], 201);
+        ], 200);
     }
 
     // Login User
@@ -58,7 +58,7 @@ class AuthController extends Controller
         return response()->json([
             'user' => auth()->user(),
             'token' => $token
-        ], 201);
+        ], 200);
     }
 
     // Logout User
